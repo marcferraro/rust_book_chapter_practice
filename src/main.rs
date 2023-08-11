@@ -10,6 +10,8 @@ fn main() {
     let fibonacci_target = 13;
     println!("Number {fibonacci_target} of the Fibonacci Sequence is {}.",
         find_nth_fibonacci(fibonacci_target));
+    
+    print_twelve_days_of_christmas()
 }
 
 // Convert temperatures between Fahrenheit and Celsius.
@@ -40,6 +42,26 @@ fn find_nth_fibonacci(target: i32) -> i32 {
 
 // Print the lyrics to the Christmas carol “The Twelve Days of Christmas,” 
 // taking advantage of the repetition in the song.
-// fn print_twelve_days_of_christmas() {
-    
-// }
+fn print_twelve_days_of_christmas() {
+    let lyrics: [[&str; 2]; 12] = [
+        ["first", "A partridge in a pear tree\n"],
+        ["second", "Two turtle doves"],
+        ["third", "Three French hens"],
+        ["fourth", "Four calling birds"],
+        ["fifth", "Five goldenen rings"],
+        ["sixth", "Six geese a-laying"],
+        ["seventh", "Seven swans a-swimming"],
+        ["eighth", "Eight maids a-milking"],
+        ["ninth", "Nine ladies dancing"],
+        ["tenth", "Ten lords a-leaping"],
+        ["eleventh", "Eleven pipers piping"],
+        ["twelfth", "Twelve drummers drumming"],
+    ];
+    // there's another exception with the and on subsequent day 1s
+    for (i, lyric) in lyrics.iter().enumerate() {
+        println!("On the {} day of christmas\nMy true love gave to me", lyric[0]);
+        for day in 0..=i {
+            println!("{}", lyrics[i - day][1]);
+        }
+    }
+}
