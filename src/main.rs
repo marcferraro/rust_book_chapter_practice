@@ -1,14 +1,14 @@
 fn main() {
     let fahrenheit = 72.0;
     let celsius = 32.0;
-    println!("{fahrenheit} degrees fahrenheit is ~{:.1} degrees celsius.", 
+    println!("{fahrenheit} degrees fahrenheit is ~{:.1} degrees celsius.\n", 
         fahrenheit_to_celsius(fahrenheit));
     
-    println!("{celsius} degrees celsius is ~{:.1} degrees fahrenheit.", 
+    println!("{celsius} degrees celsius is ~{:.1} degrees fahrenheit.\n", 
         celsius_to_fahrenheit(celsius));
     
     let fibonacci_target = 13;
-    println!("Number {fibonacci_target} of the Fibonacci Sequence is {}.",
+    println!("Number {fibonacci_target} of the Fibonacci Sequence is {}.\n",
         find_nth_fibonacci(fibonacci_target));
     
     print_twelve_days_of_christmas()
@@ -43,25 +43,37 @@ fn find_nth_fibonacci(target: i32) -> i32 {
 // Print the lyrics to the Christmas carol “The Twelve Days of Christmas,” 
 // taking advantage of the repetition in the song.
 fn print_twelve_days_of_christmas() {
+    println!("The Twelve Days of Christmas:\n");
+
     let lyrics: [[&str; 2]; 12] = [
-        ["first", "A partridge in a pear tree\n"],
-        ["second", "Two turtle doves"],
-        ["third", "Three French hens"],
-        ["fourth", "Four calling birds"],
-        ["fifth", "Five goldenen rings"],
-        ["sixth", "Six geese a-laying"],
-        ["seventh", "Seven swans a-swimming"],
-        ["eighth", "Eight maids a-milking"],
-        ["ninth", "Nine ladies dancing"],
-        ["tenth", "Ten lords a-leaping"],
-        ["eleventh", "Eleven pipers piping"],
-        ["twelfth", "Twelve drummers drumming"],
+        ["first", "partridge in a pear tree 🌳\n"],
+        ["second", "Two turtle doves 🕊\n"],
+        ["third", "Three French hens 🐓\n"],
+        ["fourth", "Four calling birds 🐦\n"],
+        ["fifth", "Five goldenen rings 💍\n"],
+        ["sixth", "Six geese a-laying 🦢\n"],
+        ["seventh", "Seven swans a-swimming 🦢\n"],
+        ["eighth", "Eight maids a-milking 🥛\n"],
+        ["ninth", "Nine ladies dancing 💃\n"],
+        ["tenth", "Ten lords a-leaping 🕺\n"],
+        ["eleventh", "Eleven pipers piping 🎺\n"],
+        ["twelfth", "Twelve drummers drumming 🥁\n"],
     ];
-    // there's another exception with the and on subsequent day 1s
+
+    let mut accumulator: String = "".to_owned();
+    
     for (i, lyric) in lyrics.iter().enumerate() {
-        println!("On the {} day of christmas\nMy true love gave to me", lyric[0]);
-        for day in 0..=i {
-            println!("{}", lyrics[i - day][1]);
+        if i == 0 {
+            println!("On the {} day of christmas\nMy true love gave to me\n{}{}",
+                lyric[0], "A ", lyric[1]);
+            
+            accumulator.insert_str(0, &format!("{}{}", "And a ", lyric[1]));
+            continue
         }
-    }
+        
+        accumulator.insert_str(0, lyric[1]);
+        
+        println!("On the {} day of christmas\nMy true love gave to me\n{}",
+            lyric[0], accumulator);
+    };
 }
