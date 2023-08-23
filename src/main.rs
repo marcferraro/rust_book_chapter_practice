@@ -23,4 +23,7 @@ fn main() {
     let mut unsorted_ints_odd_length: Vec<i32> = vec![6, 3, 2, 7, 8, 9, 5, 10, 4, 1, 0];
     let median_odd = common_collections_practice::vector_median(&mut unsorted_ints_odd_length);
     println!("The median of the odd array {:?} is {}.", unsorted_ints_odd_length, median_odd);
+
+    let tally = vec![1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 7, 7, 7, 8];
+    println!("{}", common_collections_practice::vector_mode(&tally));
 }

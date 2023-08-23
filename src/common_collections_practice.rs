@@ -2,6 +2,8 @@
 // median (when sorted, the value in the middle position) and 
 // mode (the value that occurs most often; a hash map will be helpful here) of the list.
 
+use std::collections::HashMap;
+
 pub fn vector_median(v: &mut Vec<i32>) -> f64 {
     v.sort_unstable();
     let length = v.len();
@@ -11,14 +13,22 @@ pub fn vector_median(v: &mut Vec<i32>) -> f64 {
     } else {
         (v[(length - 1) / 2]) as f64
     }
-
-
-    // sort array by value
-    // check length of array
-        // if even, average middle two numbers
-        // if odd, reutrn middle num
 }
 
-pub fn vector_mode() -> i32 {
-    todo!()
+pub fn vector_mode(v: &Vec<i32>) -> i32 {
+    let mut tally = HashMap::new();
+    
+    // possible to keep track of highest as we go?
+    for int in v.iter() {
+        let count = tally.entry(*int).or_insert(0);
+        *count += 1;
+    };
+
+    let mut highest_key: i32 = v[0];
+    for (key, value) in &tally {
+        if value > &tally.get(&highest_key).copied().unwrap() {
+            highest_key = *key;
+        }
+    }
+    highest_key
 }
