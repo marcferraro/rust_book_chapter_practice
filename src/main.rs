@@ -1,3 +1,8 @@
+mod common_concepts_practice;
+mod common_collections_practice;
+use crate::common_concepts_practice as ccpractice;
+
+
 fn main() {
     let fahrenheit = 72.0;
     let celsius = 32.0;
@@ -13,7 +18,3 @@ fn main() {
     
     ccpractice::print_twelve_days_of_christmas()
 }
-
-mod common_concepts_practice;
-
-use crate::common_concepts_practice as ccpractice;
