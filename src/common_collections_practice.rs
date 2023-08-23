@@ -9,8 +9,7 @@ pub fn vector_median(mut v: Vec<i32>) -> f64 {
     if let 0 = length % 2 {
         (v[(length / 2) - 1] as f64 + v[length / 2] as f64) as f64 / 2.0
     } else {
-        println!("odd");
-        1.0
+        (v[(length - 1) / 2]) as f64
     }
 
 
