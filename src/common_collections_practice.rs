@@ -2,7 +2,7 @@
 // median (when sorted, the value in the middle position) and 
 // mode (the value that occurs most often; a hash map will be helpful here) of the list.
 
-pub fn vector_median(mut v: Vec<i32>) -> f64 {
+pub fn vector_median(v: &mut Vec<i32>) -> f64 {
     v.sort_unstable();
     let length = v.len();
     

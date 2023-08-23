@@ -16,11 +16,11 @@ fn main() {
     
     common_concepts_practice::print_twelve_days_of_christmas();
 
-    let unsorted_ints_even_length: Vec<i32> = vec![6, 3, 2, 7, 8, 9, 5, 10, 4, 1];
-    let median_even = common_collections_practice::vector_median(unsorted_ints_even_length);
-    println!("The median of the even array {}.", median_even);
+    let mut unsorted_ints_even_length: Vec<i32> = vec![6, 3, 2, 7, 8, 9, 5, 10, 4, 1];
+    let median_even = common_collections_practice::vector_median(&mut unsorted_ints_even_length);
+    println!("The median of the even array {:?} is {}.", unsorted_ints_even_length, median_even);
 
-    let unsorted_ints_odd_length: Vec<i32> = vec![6, 3, 2, 7, 8, 9, 5, 10, 4, 1, 0];
-    let median_odd = common_collections_practice::vector_median(unsorted_ints_odd_length);
-    println!("The median of the odd array is {}.", median_odd);
+    let mut unsorted_ints_odd_length: Vec<i32> = vec![6, 3, 2, 7, 8, 9, 5, 10, 4, 1, 0];
+    let median_odd = common_collections_practice::vector_median(&mut unsorted_ints_odd_length);
+    println!("The median of the odd array {:?} is {}.", unsorted_ints_odd_length, median_odd);
 }
