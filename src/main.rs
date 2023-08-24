@@ -26,4 +26,6 @@ fn main() {
 
     let tally = vec![1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 7, 7, 7, 8];
     println!("{}", common_collections_practice::vector_mode(&tally));
+
+    common_collections_practice::add_employees()
 }

@@ -3,6 +3,7 @@
 // mode (the value that occurs most often; a hash map will be helpful here) of the list.
 
 use std::collections::HashMap;
+use std::io;
 
 pub fn vector_median(v: &mut Vec<i32>) -> f64 {
     v.sort_unstable();
@@ -31,4 +32,83 @@ pub fn vector_mode(v: &Vec<i32>) -> i32 {
         }
     }
     highest_key
+}
+
+// Convert strings to pig latin. The first consonant of each word is moved to the end of the word
+// and “ay” is added, so “first” becomes “irst-fay.” Words that start with a vowel have “hay” added
+// to the end instead (“apple” becomes “apple-hay”). Keep in mind the details about UTF-8 encoding!
+
+fn pig_latin(s: String) -> String {
+    let vowels = ["a", "e", "i", "o", "u"];
+
+    // for word in s.split_whitespace() {
+    //     word.chars()
+    // };
+
+    s
+    // divide by white space
+    // slice first letter of string, if consonant move to end and add "-[letter] + ay"
+        // if vowel, conatenate "hay"
+    
+}
+
+//  Using a hash map and vectors, create a text interface to allow a user to add employee names to a department
+//  in a company. For example, “Add Sally to Engineering” or “Add Amir to Sales.” Then let the user retrieve a
+//  list of all people in a department or all people in the company by department, sorted alphabetically.
+
+pub fn add_employees() {
+    let mut departments: HashMap<String, Vec<String>> = HashMap::new();
+
+    loop {
+        println!("Add employees to departments? y/n");
+        let mut confirm = String::new();
+        
+        io::stdin()
+            .read_line(&mut confirm)
+            .expect("Failed to read user input.");
+
+        
+        match confirm.trim() {
+            "n" => {
+                println!("Have a good day!");
+                break
+            },
+            "y" => println!("Please enter a department:"),
+            &_ => {
+                println!("Please enter y or n.");
+                continue
+            },
+        }
+
+        let mut department = String::new();
+
+        io::stdin()
+            .read_line(&mut department)
+            .expect("Failed to read user input.");
+
+        if department.len() == 0 {
+            println!("Department must have at least one character.");
+            continue
+        }
+
+        let mut employee = String::new();
+
+        println!("Please enter an employee name:");
+
+        io::stdin()
+            .read_line(&mut employee)
+            .expect("Failed to read user input.");
+
+        if employee.len() == 0 {
+            println!("Employee must have at least one character.");
+            continue
+        }
+
+
+        let dept_vec = departments.entry(String::from(department.trim())).or_insert(vec![]);
+        dept_vec.push(String::from(employee.trim()))
+    }
+
+    println!("{:?}", departments)
+
 }
