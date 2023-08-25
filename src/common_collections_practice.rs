@@ -61,6 +61,7 @@ pub fn pig_latin(s: String) -> String {
             }
         }
     };
+    pig_latin.pop();
     pig_latin
 }
 
