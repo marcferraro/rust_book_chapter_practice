@@ -41,7 +41,7 @@ pub fn vector_mode(v: &Vec<i32>) -> i32 {
 pub fn pig_latin(s: String) -> String {
     let mut pig_latin = String::new();
     
-    for word in s.split_whitespace() {
+    for word in s.to_lowercase().split_whitespace() {
         let mut chars = word.chars();
 
         let first_letter = match chars.next() {
@@ -54,10 +54,10 @@ pub fn pig_latin(s: String) -> String {
 
         match first_letter {
             'a' | 'e' | 'i' | 'o' | 'u' => {
-                pig_latin = pig_latin + &format!("{}{}-hay", first_letter.to_string(), chars.as_str().to_owned());
+                pig_latin = pig_latin + &format!("{}{}-hay", first_letter.to_string(), chars.as_str().to_owned()) + " ";
             },
             _ => {
-                pig_latin = pig_latin + &format!("{}-{}ay", chars.as_str().to_owned(), first_letter.to_string());
+                pig_latin = pig_latin + &format!("{}-{}ay", chars.as_str().to_owned(), first_letter.to_string()) + " ";
             }
         }
     };
@@ -118,7 +118,5 @@ pub fn add_employees() {
         let dept_vec = departments.entry(String::from(department.trim())).or_insert(vec![]);
         dept_vec.push(String::from(employee.trim()))
     }
-
-    println!("{:?}", departments)
-
+    if departments.len() > 0 {println!("{:?}", departments)}
 }
