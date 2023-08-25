@@ -38,18 +38,30 @@ pub fn vector_mode(v: &Vec<i32>) -> i32 {
 // and “ay” is added, so “first” becomes “irst-fay.” Words that start with a vowel have “hay” added
 // to the end instead (“apple” becomes “apple-hay”). Keep in mind the details about UTF-8 encoding!
 
-fn pig_latin(s: String) -> String {
-    let vowels = ["a", "e", "i", "o", "u"];
-
-    // for word in s.split_whitespace() {
-    //     word.chars()
-    // };
-
-    s
-    // divide by white space
-    // slice first letter of string, if consonant move to end and add "-[letter] + ay"
-        // if vowel, conatenate "hay"
+pub fn pig_latin(s: String) -> String {
+    let mut pig_latin = String::new();
     
+    for word in s.split_whitespace() {
+        let mut chars = word.chars();
+
+        let first_letter = match chars.next() {
+            Some(letter) => letter,
+            None => {
+                println!("String needs at least one letter.");
+                break
+            },
+        };
+
+        match first_letter {
+            'a' | 'e' | 'i' | 'o' | 'u' => {
+                pig_latin = pig_latin + &format!("{}{}-hay", first_letter.to_string(), chars.as_str().to_owned());
+            },
+            _ => {
+                pig_latin = pig_latin + &format!("{}-{}ay", chars.as_str().to_owned(), first_letter.to_string());
+            }
+        }
+    };
+    pig_latin
 }
 
 //  Using a hash map and vectors, create a text interface to allow a user to add employee names to a department
@@ -67,7 +79,6 @@ pub fn add_employees() {
             .read_line(&mut confirm)
             .expect("Failed to read user input.");
 
-        
         match confirm.trim() {
             "n" => {
                 println!("Have a good day!");
@@ -103,7 +114,6 @@ pub fn add_employees() {
             println!("Employee must have at least one character.");
             continue
         }
-
 
         let dept_vec = departments.entry(String::from(department.trim())).or_insert(vec![]);
         dept_vec.push(String::from(employee.trim()))
